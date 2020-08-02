@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etudiant index{% endblock %}
+
+{% block body %}
+    <h1>List des etudiants</h1>
+{% for sps in app.flashes('success') %}
+      <div class="alert alert-success">
+      {{ sps }}
+      </div>
+      {% endfor %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cin</th>
+                <th>NomPrenom</th>
+                <th>NumCarte</th>
+                <th>DateNaiss</th>
+                <th>Email</th>
+                <th>Tel</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for etudiant in etudiants %}
+            <tr>
+                <td>{{ etudiant.cin }}</td>
+                <td>{{ etudiant.nomPrenom }}</td>
+                <td>{{ etudiant.numCarte }}</td>
+                <td>{{ etudiant.dateNaiss ? etudiant.dateNaiss|date('Y-m-d') : '' }}</td>
+                <td>{{ etudiant.email }}</td>
+                <td>{{ etudiant.tel }}</td>
+                <td><img src="{{ asset('uploads/etudimage/' ~ etudiant.photo) }}" class="" alt="" width="30px" height="30px" ></td>
+               
+                <td>
+               
+                <a href="{{etudiant.cin}}"<button class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Affichier"><i class="fa fa-table"></i></button></a>
+                <a href="{{etudiant.cin}}" <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Modifier"><i class="fa fa-edit"></i></button></a>
+               <a href="{{ path('etudiant_delete', {'cin': etudiant.cin}) }}" class="btn btn-danger fa fa-trash" data-toggle="tooltip" data-placement="top" title="Supprimer"></a>
+                </td>
+              
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">aucun enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('etudiant_new') }}" <button class="btn btn-blue-grey btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Ajouter"><i class="fa fa-user-plus"></i></button></a>
+{% endblock %}

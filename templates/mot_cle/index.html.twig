@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MotCle index{% endblock %}
+
+{% block body %}
+    <h1>MotCle index</h1>
+{% for sws in app.flashes('success') %}
+      <div class="alert alert-success">
+      {{ sws }}
+      </div>
+      {% endfor %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdMotCle</th>
+                <th>DesignMotCle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mot_cle in mot_cles %}
+            <tr>
+                <td>{{ mot_cle.idMotCle }}</td>
+                <td>{{ mot_cle.designMotCle }}</td>
+                <td>
+                    <a href="{{ path('mot_cle_show', {'idMotCle': mot_cle.idMotCle}) }}" class="btn btn-primary">Affichier</a>
+                    <a href="{{ path('mot_cle_edit', {'idMotCle': mot_cle.idMotCle}) }}"class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('mot_cle_delete', {'idMotCle': mot_cle.idMotCle}) }}"class="btn btn-primary">Supprimer</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">aucun enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('mot_cle_new') }}" class="btn btn-primary" class="btn btn-primary">Ajouter un MotCle</a>
+{% endblock %}

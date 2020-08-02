@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit EmpruntRetour{% endblock %}
+
+{% block body %}
+    <h1>Modifier un EmpruntRetour</h1>
+
+    {{ include('emprunt_retour/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    {{ include('emprunt_retour/_delete_form.html.twig') }}
+    <a href="{{ path('emprunt_retour_index') }}" class="btn btn-primary btn-sm">Retourne à la liste</a>
+
+{% endblock %}

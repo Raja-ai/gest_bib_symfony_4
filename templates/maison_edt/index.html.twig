@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaisonEdt index{% endblock %}
+
+{% block body %}
+    <h1> List des MaisonEdts</h1>
+   {% for m in app.flashes('success') %}
+      <div class="alert alert-success">
+      {{ m }}
+      </div>
+      {% endfor %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdMaisonEdt</th>
+                <th>DesignMaisonEdt</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>SiteWeb</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for maison_edt in maison_edts %}
+            <tr>
+                <td>{{ maison_edt.idMaisonEdt }}</td>
+                <td>{{ maison_edt.designMaisonEdt }}</td>
+                <td>{{ maison_edt.adresse }}</td>
+                <td>{{ maison_edt.email }}</td>
+                <td>{{ maison_edt.siteWeb }}</td>
+                <td>
+                 <a href="{{ path('maison_edt_show', {'idMaisonEdt': maison_edt.idMaisonEdt}) }}" <button class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Affichier"><i class="fa fa-table"></i></button></a>
+                 <a href="{{ path('maison_edt_edit', {'idMaisonEdt': maison_edt.idMaisonEdt}) }}"  <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Modifier"><i class="fa fa-edit"></i></button></a>
+                 <a href="{{ path('maison_edt_delete', {'idMaisonEdt': maison_edt.idMaisonEdt}) }}"  class="btn btn-danger fa fa-trash" data-toggle="tooltip" data-placement="top" title="Supprimer"></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">aucun enregistrement </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('maison_edt_new') }}" <button class="btn btn-blue-grey btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Ajouter"><i class="fa fa-user-plus"></i></button></a>
+{% endblock %}

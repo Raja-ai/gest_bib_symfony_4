@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MaisonEdt{% endblock %}
+
+{% block body %}
+    <h1>Creé un Maison </h1>
+
+    {{ include('maison_edt/_form.html.twig') }}
+
+    <a href="{{ path('maison_edt_index') }}" class="btn btn-primary btn-sm">Retourne à la list</a>
+{% endblock %}

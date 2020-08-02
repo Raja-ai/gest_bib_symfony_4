@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Auteur{% endblock %}
+
+{% block body %}
+    <h1>Modifier les données d'un auteur </h1>
+
+    {{ include('auteur/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+     {{ include('auteur/_delete_form.html.twig') }}
+
+   
+    <a href="{{ path('auteur_index') }}" class="btn btn-primary btn-sm" >Retourne à la list</a>
+
+{% endblock %}

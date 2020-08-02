@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EmpruntRetour index{% endblock %}
+
+{% block body %}
+    <h1>EmpruntRetour liste</h1>
+{% for sms in app.flashes('success') %}
+      <div class="alert alert-success">
+      {{ sms }}
+      </div>
+      {% endfor %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdEmpruntRetour</th>
+                <th>DateEmprunt</th>
+                <th>DateRetour</th>
+                <th>EtatRetour</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emprunt_retour in emprunt_retours %}
+            <tr>
+                <td>{{ emprunt_retour.idEmpruntRetour }}</td>
+                <td>{{ emprunt_retour.dateEmprunt ? emprunt_retour.dateEmprunt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ emprunt_retour.dateRetour ? emprunt_retour.dateRetour|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ emprunt_retour.etatRetour }}</td>
+                <td>
+                    <a href="{{ path('emprunt_retour_show', {'idEmpruntRetour': emprunt_retour.idEmpruntRetour}) }}"class="btn btn-primary" >Affichier</a>
+                    <a href="{{ path('emprunt_retour_edit', {'idEmpruntRetour': emprunt_retour.idEmpruntRetour}) }}" class="btn btn-primary">Modifier</a>
+                    <a href="{{ path('emprunt_retour_delete', {'idEmpruntRetour': emprunt_retour.idEmpruntRetour}) }}"class="btn btn-primary">Supprimer</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('emprunt_retour_new') }}" class="btn btn-primary" class="btn btn-primary">Ajouter un EmprunRetour</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MotCle{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un  MotCle</h1>
+
+    {{ include('mot_cle/_form.html.twig') }}
+
+    <a href="{{ path('mot_cle_index') }}">Retourne à la liste </a>
+{% endblock %}

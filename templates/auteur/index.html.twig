@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Auteur index{% endblock %}
+
+{% block body %}
+    <h1>List des auteurs</h1>
+    {% for message in app.flashes('success') %}
+      <div class="alert alert-success">
+      {{ message }}
+      </div>
+      {% endfor %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>IdAuteur</th>
+                <th>NomPrenom</th>
+                <th>Date de nais</th>
+                <th>Nationalite</th>
+                <th>Description</th>
+                <th>Photo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for auteur in auteurs %}
+            <tr>
+                <td>{{ auteur.idAuteur }}</td>
+                <td>{{ auteur.nomPrenom }}</td>
+                <td>{{ auteur.dateNaiss ? auteur.dateNaiss|date('Y-m-d') : '' }}</td>
+                <td>{{ auteur.nationalite }}</td>
+                <td>{{ auteur.description }}</td>
+                <td><img src="{{ asset('uploads/image/' ~ auteur.photo) }}" class="" alt="" width="30px" height="30px" ></td>
+                <!--<td>{{ auteur.photo }}</td>-->
+                <td>
+                    
+                   <a href="{{ path('auteur_show', {'idAuteur': auteur.idAuteur}) }}" > <button class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Affichier"><i class="fa fa-table"></i></button></a>
+                   <a href="{{ path('auteur_edit', {'idAuteur': auteur.idAuteur}) }}"> <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Modifier"><i class="fa fa-edit"></i></button></a>
+                   <a href="{{ path('auteur_delete', {'idAuteur': auteur.idAuteur}) }}" class="btn btn-danger fa fa-trash" data-toggle="tooltip" data-placement="top" title="Supprimer"></a>
+
+                
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">acun enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('auteur_new') }}" <button class="btn btn-blue-grey btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Ajouter"><i class="fa fa-user-plus"></i></button></a>
+{% endblock %}

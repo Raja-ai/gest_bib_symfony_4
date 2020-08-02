@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste Des Livres {% endblock %}
+
+{% block body %}
+    <h1>Liste Des Livres</h1>
+{% for s in app.flashes('success') %}
+      <div class="alert alert-success">
+      {{ s }}
+      </div>
+      {% endfor %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>IdLivre</th>
+                <th>Titre</th>
+                <th>NbrePages</th>
+                <th>Prix</th>
+                <th>DateAchat</th>
+                <th>Disponible</th>
+                <th>Couverture</th>
+                <th>LienTelechargement</th>
+                <th>NbreTelechargement</th>
+                <th>EtatLivre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livre in livres %}
+            <tr>
+                <td>{{ livre.idLivre }}</td>
+                <td>{{ livre.titre }}</td>
+                <td>{{ livre.nbrePages }}</td>
+                <td>{{ livre.prix }}</td>
+                <td>{{ livre.dateAchat ? livre.dateAchat|date('Y-m-d') : '' }}</td>
+                <td>{{ livre.disponible ? 'Yes' : 'No' }}</td>
+                <td><img src="{{ asset('uploads/livrecover/' ~ livre.couverture) }}" class="" alt="" width="30px" height="30px" ></td>
+                <td>{{ livre.lienTelechargement }}</td>
+                <td>{{ livre.nbreTelechargement }}</td>
+                <td>{{ livre.etatLivre }}</td>
+                <td>
+
+                <a href="{{ path('livre_show', {'idLivre': livre.idLivre}) }}" <button class="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Affichier"><i class="fa fa-table"></i></button></a></td>
+               <td> <a href="{{ path('livre_edit', {'idLivre': livre.idLivre}) }}"  <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Modifier"><i class="fa fa-edit"></i></button></a></td>
+               <td> <a href="{{ path('livre_delete', {'idLivre': livre.idLivre}) }}" class="btn btn-danger fa fa-trash" data-toggle="tooltip" data-placement="top" title="Supprimer"></a></td>
+                    
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">aucun enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('livre_new') }}"<button class="btn btn-blue-grey btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Ajouter"><i class="fa fa-user-plus"></i></button></a>
+{% endblock %}

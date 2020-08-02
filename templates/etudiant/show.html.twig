@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etudiant{% endblock %}
+
+{% block body %}
+    <h1>Etudiant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Cin</th>
+                <td>{{ etudiant.cin }}</td>
+            </tr>
+            <tr>
+                <th>NomPrenom</th>
+                <td>{{ etudiant.nomPrenom }}</td>
+            </tr>
+            <tr>
+                <th>NumCarte</th>
+                <td>{{ etudiant.numCarte }}</td>
+            </tr>
+            <tr>
+                <th>DateNaiss</th>
+                <td>{{ etudiant.dateNaiss ? etudiant.dateNaiss|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ etudiant.email }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ etudiant.tel }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ etudiant.photo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+   <a href="{{ path('etudiant_edit', {'cin': etudiant.cin}) }}" class="btn btn-success btn-sm">Modifier</a>
+
+    {{ include('etudiant/_delete_form.html.twig') }} 
+     <a href="{{ path('etudiant_index') }}" class="btn btn-primary btn-sm">Retourne à la liste</a>
+
+   
+{% endblock %}

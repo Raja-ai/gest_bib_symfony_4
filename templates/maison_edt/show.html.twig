@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaisonEdt{% endblock %}
+
+{% block body %}
+    <h1>MaisonEdt</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdMaisonEdt</th>
+                <td>{{ maison_edt.idMaisonEdt }}</td>
+            </tr>
+            <tr>
+                <th>DesignMaisonEdt</th>
+                <td>{{ maison_edt.designMaisonEdt }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ maison_edt.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ maison_edt.email }}</td>
+            </tr>
+            <tr>
+                <th>SiteWeb</th>
+                <td>{{ maison_edt.siteWeb }}</td>
+            </tr>
+        </tbody>
+    </table>
+ <a href="{{ path('maison_edt_edit', {'idMaisonEdt': maison_edt.idMaisonEdt}) }}" class="btn btn-success btn-sm">Modifier</a>
+
+    {{ include('maison_edt/_delete_form.html.twig') }}
+    <a href="{{ path('maison_edt_index') }}" class="btn btn-primary btn-sm">Retourne à la list</a>
+
+   
+{% endblock %}

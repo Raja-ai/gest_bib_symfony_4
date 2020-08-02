@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MotCle{% endblock %}
+
+{% block body %}
+    <h1>MotCle</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdMotCle</th>
+                <td>{{ mot_cle.idMotCle }}</td>
+            </tr>
+            <tr>
+                <th>DesignMotCle</th>
+                <td>{{ mot_cle.designMotCle }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ path('mot_cle_edit', {'idMotCle': mot_cle.idMotCle}) }}" class="btn btn-success btn-sm">Modifier</a>
+
+    {{ include('mot_cle/_delete_form.html.twig') }}
+    <a href="{{ path('mot_cle_index') }}" class="btn btn-primary btn-sm">Retourne à la liste</a>
+
+
+{% endblock %}
